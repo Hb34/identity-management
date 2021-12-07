@@ -10,9 +10,10 @@ export class UsersService {
   // Liste des utilisateurs
   users : UserLdap[] = LDAP_USERS;
 
-  getUsers(login: string) : Observable<UserLdap[]> {
-    // @ts-ignore
+  getUsers() : Observable<UserLdap[]> {
+    return of (this.users);
+  }
+  getUser(login: string) : Observable<UserLdap> {
     return of (this.users.find(user => user.login === login));
   }
-  constructor() { }
 }

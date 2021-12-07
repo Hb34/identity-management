@@ -6,9 +6,6 @@ import {MatPaginator} from "@angular/material/paginator";
 import {UsersService} from "../service/users.service";
 import {Router} from "@angular/router";
 
-interface keyboardEvent {
-  target: any;
-}
 
 @Component({
   selector: 'app-ldap-list',
@@ -27,7 +24,7 @@ export class LdapListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
-    //this.dataSource.filterPredicate = (data: UserLdap, filter: string) => this.filterPredicate(data, filter);
+    this.dataSource.filterPredicate = (data: UserLdap, filter: string) => this.filterPredicate(data, filter);
     this.getUsers();
 
   }
@@ -41,15 +38,13 @@ export class LdapListComponent implements OnInit, AfterViewInit {
 
   }
   unactiveSelected = false;
-  unactivSelected: any;
 
   private getUsers(): void {
-    //this.dataSource.data = LDAP_USERS;
-    // @ts-ignore
     this.usersService.getUsers().subscribe(
       users => {
         if (this.unactiveSelected) {
-          this.dataSource.data = users.filter( user => user.active === false);
+          this.dataSource.data = users.filter( user => user.active === false
+          );
         } else {
           this.dataSource.data = users
         }
