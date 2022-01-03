@@ -1,9 +1,13 @@
 <div class="mat-elevation-z8">
+  <button mat-raised-button color="primary"
+          (click)="addUser()">
+    Ajouter un utilisateur
+  </button>
   <div class="toolbar-filter">&nbsp;&nbsp;
     <mat-form-field style="width: 40%">
       <mat-label>Nom Complet</mat-label>
       <input matInput (keyup)="applyFilter($event)"
-              placeholder="Entrez le début d'un nom" />
+             placeholder="Entrez le début d'un nom" />
     </mat-form-field>
     &nbsp;&nbsp;
     <mat-slide-toggle [checked]="unactiveSelected"
@@ -32,7 +36,8 @@
     </ng-container>
 
     <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-    <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns:displayedColumns"
+        (click)="edit(row.login)"></tr>
   </table>
 
   <mat-paginator

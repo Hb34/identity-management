@@ -8,7 +8,7 @@ export interface UserLdap {
   mail: string;
   role: string;
   employeNumero: number;
-  emlpoyeNiveau: number;
+  employeNiveau: number;
   dateEmbauche: string;
   publisherId: number;
   active: boolean;

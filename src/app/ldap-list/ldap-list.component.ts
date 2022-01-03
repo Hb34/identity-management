@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import {UserLdap} from "../model/user-ldap";
 import {MatSlideToggleChange} from "@angular/material/slide-toggle";
 import {MatTableDataSource} from "@angular/material/table";
@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
   templateUrl: './ldap-list.component.html',
   styleUrls: ['./ldap-list.component.scss']
 })
-export class LdapListComponent implements OnInit, AfterViewInit {
+export class LdapListComponent implements OnInit {
 
     displayedColumns: string[] = ['nomComplet', 'mail', 'employeNumero'];
     dataSource = new MatTableDataSource<UserLdap>([]);
@@ -37,6 +37,13 @@ export class LdapListComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
   }
+  addUser(){
+    this.router.navigate(['/user/add']).then( (e) => {
+      if (! e) {
+        console.log('Navigation has failed');
+      }
+    });
+  }
   unactiveSelected = false;
 
   private getUsers(): void {
@@ -57,6 +64,13 @@ export class LdapListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     console.log('Values on ngAfterViewInit():');
     console.log("Mat Paginator:", this.paginator);
+  }
+  edit(login: string) {
+    this.router.navigate(['/user', login]).then( (e) => {
+      if (! e) {
+        console.log("Navigation has failed!");
+      }
+    });
   }
 
 }
