@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersService} from "../service/users.service";
+import {UsersService} from "../../service/users.service";
 import {LdapDetailComponent} from "../ldap-detail/ldap-detail.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
@@ -32,12 +32,12 @@ export class LdapEditComponent extends LdapDetailComponent implements OnInit {
       data => {
         this.processValidatedRunning = false;
         this.errorMessage = '';
-        this.snackBar.open('utilisateur modifié !', 'X');
+        this.snackBar.open('utilisateur modifié !', 'x');
       },
       error => {
         this.processValidatedRunning = false;
-        this.errorMessage = '';   //Une erreur est survenue dans la modification ! ->enlever car erreur à l'intérieur des cotes
-        this.snackBar.open('Utilisateur non modifié !', 'X');
+        this.errorMessage = 'Une erreur est survenue dans la modification !';   // ->enlever car erreur à l'intérieur des cotes
+        this.snackBar.open('Utilisateur non modifié !', 'x');
       }
     );
   }
@@ -52,8 +52,8 @@ export class LdapEditComponent extends LdapDetailComponent implements OnInit {
       },
       error => {
         this.processLoadRunning = false;
-        this.errorMessage = '';    //L'utilisateur n'existe pas ! ->enlever car erreur à l'intérieur des cotes
-        this.snackBar.open('Utilisateur non trouvé !', 'X');
+        this.errorMessage = 'L\'utilisateur n\'existe pas !';    // ->enlever car erreur à l'intérieur des cotes
+        this.snackBar.open('Utilisateur non trouvé !', 'x');
       }
     );
   }

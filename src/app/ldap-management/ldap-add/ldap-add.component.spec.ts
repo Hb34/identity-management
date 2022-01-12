@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LdapAddComponent } from './ldap-add.component';
 
 describe('LdapAddComponent', () => {

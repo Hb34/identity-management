@@ -2,21 +2,19 @@
   <button mat-raised-button color="primary"
           (click)="addUser()">
     Ajouter un utilisateur
-  </button>
-  <div class="toolbar-filter">&nbsp;&nbsp;
+  </button> <br /><br />
+  <div class="toolbar-filter">
     <mat-form-field style="width: 40%">
       <mat-label>Nom Complet</mat-label>
       <input matInput (keyup)="applyFilter($event)"
              placeholder="Entrez le début d'un nom" />
     </mat-form-field>
-    &nbsp;&nbsp;
     <mat-slide-toggle [checked]="unactiveSelected"
                       (change)="unactiveChanged($event)">
       Utilisateur désactivé uniquement
     </mat-slide-toggle>
   </div>
   <table mat-table [dataSource]="dataSource">
-
     <!-- Nom Complet Column -->
     <ng-container matColumnDef="nomComplet">
       <th mat-header-cell *matHeaderCellDef>Nom Complet </th>

@@ -1,18 +1,8 @@
-import { Router} from "@angular/router";
-import {UserLdap} from "../model/user-ldap";
+import {Router} from "@angular/router";
+import {UserLdap} from "../../model/user-ldap";
 import {FormBuilder} from "@angular/forms";
-import { ConfirmValidaParentMatcher } from './passwords-validator.directive';
+import {ConfirmValidaParentMatcher, passwordValidator} from './passwords-validator.directive';
 
-function passwordValidator() {
-
-}
-/*
-@Component({
-  selector: 'app-ldap-detail',
-  templateUrl: './ldap-detail.component.html',
-  styleUrls: ['./ldap-detail.component.scss']
-})
-*/
 
 export abstract class LdapDetailComponent {
   user: UserLdap;
@@ -20,7 +10,7 @@ export abstract class LdapDetailComponent {
   processValidatedRunning = false;
   passwordPlaceHolder: string;
   confirmValidParentMatcher = new ConfirmValidaParentMatcher();
-  errorMessage: '';
+  errorMessage = '';
 
   userForm = this.fb.group({
     login: [''], //Valeur de départ vide
@@ -38,18 +28,13 @@ export abstract class LdapDetailComponent {
     public addForm: boolean,
     private fb: FormBuilder,
     private router: Router,
-    /*protected route: ActivatedRoute*/
+    /*private route: ActivatedRoute*/
   ) {
     this.passwordPlaceHolder = 'Mot de passe' + (this.addForm ? '' : ' (vide si inchangé)');
   }
   protected OnInit(): void{
 
   }
-  /*
-  ngOnInit(): void {
-    this.getUser();
-  }
-   */
 
   private formGetValue(name: string): any {
     return this.userForm.get(name).value;

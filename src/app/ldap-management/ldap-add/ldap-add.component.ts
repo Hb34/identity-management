@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {LdapDetailComponent} from "../ldap-detail/ldap-detail.component";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
-import {UsersService} from "../service/users.service";
+import {UsersService} from "../../service/users.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
@@ -13,6 +13,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class LdapAddComponent extends LdapDetailComponent implements OnInit {
 
   constructor(private usersService: UsersService,
+              private route: ActivatedRoute,
               fb: FormBuilder,
               router: Router,
               private snackBar: MatSnackBar) {
@@ -29,12 +30,12 @@ export class LdapAddComponent extends LdapDetailComponent implements OnInit {
       data => {
         this.processValidatedRunning = false;
         this.errorMessage = '';
-        this.snackBar.open('utilisateur ajouté !', 'X');
+        this.snackBar.open('utilisateur ajouté !', 'x');
       },
       error => {
         this.processValidatedRunning = false;
-        this.errorMessage = '';//L'utilisateur n'a pas pu être ajouté ! -> enlever car erreur à l'intérieur des cotes
-        this.snackBar.open('Erreur dans l\'ajout de l\'utilisateur !', 'X');
+        this.errorMessage = 'L\'utilisateur n\'a pas pu être ajouté !';// -> enlever car erreur à l'intérieur
+        this.snackBar.open('Erreur dans l\'ajout de l\'utilisateur !', 'x');
       }
     );
   }
