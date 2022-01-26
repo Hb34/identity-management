@@ -31,8 +31,8 @@ export class LdapListComponent implements OnInit {
   filterPredicate(data: UserLdap, filter: string): boolean {
     return !filter || data.nomComplet.toLowerCase().startsWith(filter);
   }
-  // @ts-ignore
-  applyFilter($event: keyboardEvent): boolean {
+
+  applyFilter($event: KeyboardEvent) {
     const  filterValue = ($event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -61,6 +61,7 @@ export class LdapListComponent implements OnInit {
     this.unactiveSelected = $event.checked;
     this.getUsers();
   }
+
   ngAfterViewInit(): void {
     console.log('Values on ngAfterViewInit():');
     console.log("Mat Paginator:", this.paginator);
